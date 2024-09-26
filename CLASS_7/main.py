@@ -31,17 +31,17 @@ def ask_player_name():
 
 def get_user_guess():
     while True:
-        guess = input("Enter a valid number between 1 - 10: ")
+        guess = input("Enter a valid number between 1 - 5: ")
         try:
             guess = int(guess)
-            if guess >= 1 and guess <= 10:
+            if guess >= 1 and guess <= 5:
                 return guess
         except ValueError:
             print("Invalid Input. Please enter a number between 1 and 10")
 
 #To get the guess for our game
 def generate_random_number():
-    number = random.randint(1, 10)
+    number = random.randint(1, 5)
     return number
 
 def get_hint(guess, number, curr_points):
@@ -86,6 +86,18 @@ def validate_guess(guess, number, curr_score, curr_points):
     return curr_points, curr_score
 
 
+def play_again():
+    while True:
+        user_input = input("Would you like to play again? Yes/y or No/n: ").lower()
+
+        if user_input in ("yes", "y"):
+            print("GREAT LETS HAVE ANOTHER ROUND")
+            return main()
+        elif user_input in ("no", "n"):
+            print("GOOD BYE ITS SAD TO SEE YOU GO")
+            break
+        else:
+            print("You have to choose between Yes or no ")
 
 
 introduction =  '''
@@ -102,6 +114,7 @@ GOOD LUCK !
 # print_slow(introduction)
 # ask_player_name()
 # get_user_guess()
+
 
 LEADERBOARD = {}
 LIFEPOINTS = 50
@@ -131,7 +144,9 @@ def main():
                     LEADERBOARD[username] = curr_score
 
     print("LEADERBOARD")
-    for player, score in LEADERBOARD:
+    for player, score in LEADERBOARD.items():
         print(f"{player}:{score}")
+
+    play_again()
 
 main()
