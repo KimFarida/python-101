@@ -1,8 +1,0 @@
-This is a new file we just created and we are writing into it
-This is the 2nd line
-This is the 3rd line
-This is the 4th line
-This is the 4th line
-This is the 5th line
-This is the 6th line
-This is the 7th line
