@@ -1,0 +1,41 @@
+Assignment: Library Management System
+Objective: Design a Library Management System using Object-Oriented Programming (OOP) principles.
+
+Requirements
+Classes:
+
+Library: Manages the collection of books and records of borrowers.
+Book: Represents each book in the library.
+Borrower: Represents a person borrowing books from the library.
+Transaction: Logs each borrowing or returning action.
+Functionalities:
+
+Add and remove books in the library.
+Register new borrowers.
+Borrow a book (only if available) and return it.
+Display all available books and details of each book.
+Show all books currently borrowed and by whom.
+Additional Conditions:
+
+Each book should have attributes like title, author, and ISBN.
+Each borrower should have a unique borrower ID and name.
+Limit borrowing to 3 books per borrower.
+Track book availability and borrowing history using Transaction.
+Suggested Structure
+Library Class
+
+Stores all books and borrower records.
+Handles adding/removing books and borrowers.
+Tracks borrowed books and limits borrowers to a maximum of 3 books.
+Book Class
+
+Attributes: title, author, isbn, is_borrowed (boolean to track availability).
+Methods to show book details.
+Borrower Class
+
+Attributes: borrower_id, name, borrowed_books (list of borrowed books).
+Methods to borrow and return books with validations.
+Transaction Class
+
+Attributes: transaction_date, book, borrower, transaction_type (borrow or return).
+Logs each borrowing or returning event.
