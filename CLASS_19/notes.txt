@@ -1,0 +1,51 @@
+Modular programming refers to the process of breaking a large, unwieldy programming task into separate, smaller, more manageable subtasks or modules.
+Individual modules can then be cobbled together like building blocks to create a larger application.
+
+ADVANTAGES OF MODULARIZING CODE
+- SIMPLICITY
+- MAINTAINABILITY
+- REUSABILITY
+- SCOPING
+
+Functions, modules and packages are all constructs in Python that promote code modularization.
+
+DIFFERENT WAYS TO WRITE A MODULE.
+- A module itself written in Python.
+- A module written in C, and then dynamically loaded at runtime, e.g re (The regular expression library)
+- A built-in module contained in the interpreter, eg itertools
+
+A module can be accessed using the "import" statement
+
+WHAT HAPPENS WHEN YOU USE "import"?
+
+When the interpreter executes the above import statement, it searches for mod.py in a list of directories assembled from the following sources:
+
+- The directory from which the input script was run or the current directory if the interpreter is being run interactively
+- The list of directories contained in the PYTHONPATH environment variable, if it is set.
+(The format for PYTHONPATH is OS-dependent but should mimic the PATH environment variable.)
+- An installation-dependent list of directories configured at the time Python is installed
+
+The resulting search path is accessible in the Python variable sys.path, which is obtained from a module named sys:
+
+TO ENSURE YOUR MODULE IS FOUND YOU MUST EITHER?
+ - Put mod.py in the directory where the input script is located or the current directory, if interactive
+ - Modify the PYTHONPATH environment variable to contain the directory where mod.py is located before starting the interpreter
+    Or: Put mod.py in one of the directories already contained in the PYTHONPATH variable
+ -Put mod.py in one of the installation-dependent directories, which you may or may not have write-access to, depending on the OS
+There is actually one additional option: you can put the module file in any directory of your choice and then modify sys.path at run-time so that it contains that directory.
+For example, in this case, you could put mod.py in directory C:\Users\john and then issue the following statements:
+
+Once a module has been imported, you can determine the location where it was found with the module’s __file__ attribute:
+
+The dir() Function
+The built-in function dir() returns a list of defined names in a namespace. Without arguments, it produces an alphabetically sorted list of names in the current local symbol table:
+When given an argument that is the name of a module, dir() lists the names defined in the module
+
+RUNNING AS A MODULE OR AS A SCRIPT
+When a .py file is imported as a module, Python sets the special dunder variable __name__ to the name of the module.
+ However, if a file is run as a standalone script, __name__ is (creatively) set to the string '__main__'.
+ Using this fact, you can discern which is the case at run-time and alter behavior accordingly:
+
+HOW TO RELOAD A MODULE ON CHANGE:
+import importlib
+importlib.reload(<The module you want to reload>)
