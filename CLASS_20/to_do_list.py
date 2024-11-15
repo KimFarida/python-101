@@ -110,7 +110,6 @@ def main():
 
         elif option == 2:
             view_task(task_date)
-            pass
         else:
             #mark a task a done.
             pass
