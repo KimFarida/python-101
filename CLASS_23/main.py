@@ -1,5 +1,6 @@
 # Scrape https://books.toscrape.com/
 # book title, price, availability, image, category, rating
+import re
 from unicodedata import category
 
 main_url = 'https://books.toscrape.com/'
@@ -40,6 +41,47 @@ def getCategoryURLS(url):
 
     return category_urls
 
-print(getCategoryURLS(main_url))
+# print(getCategoryURLS(main_url))
+
+
+
+# def getPageURLS(main_url, pages_url=[]):
+#     if not pages_url:
+#         pages_url = [main_url]
+#
+#     soup = getAndParseURL(pages_url[-1])
+#
+#     page_url = soup.find("li", class_="next")
+#     page_url = page_url.a.get("href") if page_url else None
+#
+#
+#     if not page_url:
+#         return pages_url
+#
+#     pages_url.append(main_url + page_url)
+#
+#     return getPageURLS(main_url, pages_url)
+
+# print(getPageURLS(main_url))
+
+
+pages_urls = [main_url]
+
+soup = getAndParseURL(pages_urls[0])
+
+while len(soup.findAll("a", href=re.compile("page"))) == 2  or len(pages_urls) == 1:
+    new_url = "/".join(pages_urls[-1].split("/")[:-1]) + "/" + soup.findAll("a", href=re.compile("page"))[-1].get(
+        "href")
+    pages_urls.append(new_url)
+
+    soup = getAndParseURL(new_url)
+
+print(str(len(pages_urls)) + " fetched URLs")
+print("Some examples:")
+print(pages_urls[:5])
+
+
+
+
 
 
